@@ -1,0 +1,40 @@
+using System;
+
+namespace DebuggingExercise
+{
+    class Mathematics
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter a number: ");
+            int inputNumber = Convert.ToInt32(Console.ReadLine());
+            bool isNumberPrime = IsPrimeNumber(inputNumber);
+
+            if (isNumberPrime)
+            {
+                Console.WriteLine(inputNumber + " is a prime number.");
+            }
+            else
+            {
+                Console.WriteLine(inputNumber + " is not a prime number.");
+            }
+        }
+
+        static bool IsPrimeNumber(int num)
+        {
+            if (num < 2)
+                return false;
+
+            int squareRoot = (int)Math.Sqrt(num);
+
+            for (int i = 2; i <= squareRoot; i++)
+            {
+                if (num % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}
