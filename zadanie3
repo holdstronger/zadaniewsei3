@@ -1,0 +1,58 @@
+using System;
+
+namespace FibonacciExercise
+{
+    class FibonacciCalculator
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the position of the Fibonacci sequence you want to calculate: ");
+            int position = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Choose the calculation method (i - iterative, r - recursive): ");
+            char method = Convert.ToChar(Console.ReadLine());
+
+            if (method == 'i')
+            {
+                int result = CalculateFibonacciIterative(position);
+                Console.WriteLine("The {0}th Fibonacci sequence number is: {1}", position, result);
+            }
+            else if (method == 'r')
+            {
+                int result = CalculateFibonacciRecursive(position);
+                Console.WriteLine("The {0}th Fibonacci sequence number is: {1}", position, result);
+            }
+            else
+            {
+                Console.WriteLine("Unkonwn method. Please try again.");
+            }
+        }
+
+        static int CalculateFibonacciIterative(int position)
+        {
+            if (position <= 1)
+                return position;
+
+            int fibNMinus2 = 0;
+            int fibNMinus1 = 1;
+            int fibN = 0;
+
+            for (int i = 2; i <= position; i++)
+            {
+                fibN = fibNMinus1 + fibNMinus2;
+                fibNMinus2 = fibNMinus1;
+                fibNMinus1 = fibN;
+            }
+
+            return fibN;
+        }
+
+        static int CalculateFibonacciRecursive(int position)
+        {
+            if (position <= 1)
+                return position;
+
+            return CalculateFibonacciRecursive(position - 1) + CalculateFibonacciRecursive(position - 2);
+        }
+    }
+}
